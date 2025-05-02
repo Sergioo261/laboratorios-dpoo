@@ -95,4 +95,3 @@ public class ProductoAjustadoTest {
         assertTrue(factura.contains("15000"));
     }
 }
-

@@ -67,21 +67,23 @@ public class ProductoAjustado implements Producto
     @Override
     public String generarTextoFactura( )
     {
-        StringBuffer sb = new StringBuffer( );
-        sb.append( productoBase );
-        for( Ingrediente ing : agregados )
-        {
-            sb.append( "    +" + ing.getNombre( ) );
-            sb.append( "                " + ing.getCostoAdicional( ) );
-        }
-        for( Ingrediente ing : eliminados )
-        {
-            sb.append( "    -" + ing.getNombre( ) );
+        StringBuffer sb = new StringBuffer();
+        
+        // Llamar explícitamente a generarTextoFactura del producto base
+        sb.append(productoBase.generarTextoFactura());
+
+        for (Ingrediente ing : agregados) {
+            sb.append("    +" + ing.getNombre());
+            sb.append("                " + ing.getCostoAdicional() + "\n");
         }
 
-        sb.append( "            " + getPrecio( ) + "\n" );
+        for (Ingrediente ing : eliminados) {
+            sb.append("    -" + ing.getNombre() + "\n");
+        }
 
-        return sb.toString( );
+        sb.append("            " + getPrecio() + "\n");
+
+        return sb.toString();
     }
 
 }
